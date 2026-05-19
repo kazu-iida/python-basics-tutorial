@@ -1,0 +1,46 @@
+オブジェクトとは何か
+
+オブジェクトには型があり、属性がある。
+そして、属性は「データ（プロパティ）」と「処理（関数）」から成る。
+
+#文字列型オブジェクトの例
+>>> str_obj = "abcdefg" #文字列型オブジェクトstr_objを作った
+>>> str_obj             #このオブジェクトが持つデータにアクセス
+'abcdefg'
+>>> str_obj.upper()     #文字列型オブジェクトの関数のひとつ、upper()を実行
+'ABCDEFG'
+
+dir()関数で、オブジェクトの簡単な属性について調べられる。
+>>> dir(str_obj)
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+
+これはクラスのインスタンス（クラスから作ったオブジェクト）でも同じ
+#クラス定義
+>>> class User:
+    def __init__(self, id, name, age):
+        self.id = id
+        self.name = name
+        self.age = age
+
+    def my_name(self):
+        print ("私の名前は" + self.name + "です。")
+
+#user1というオブジェクトを作った（User型オブジェクト）        
+>>> user1 = User(1,"ジョブス", 23)
+#user1オブジェクトの属性データのひとつnameに直接アクセスする（このnameやageは特にインスタンス変数と呼ばれる）
+>>> user1.name
+'ジョブス'
+#user2のメソッド（関数）を実行する
+>>> user1.my_name()
+私の名前はジョブスです。
+#ちなみに()を付けないで呼び出すと、これはメソッドであるとかえってくる。
+>>> user1.my_name
+<bound method User.my_name of <__main__.User object at 0x000001F06A2115E0>>
+
+#User型オブジェクトuser1の属性について調べる
+>>> dir(user1)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'age', 'id', 'my_name', 'name']
+
+#__class__などはまだ意味が分からないが、確かにプロパティであるid, age, nameが存在する。
+#このオブジェクトが実装するメソッド（関数）my_nameもある。
+#dir()関数では、データか関数なのかの区別はつかないようである。
